@@ -19,7 +19,7 @@ steps:
     SonarCloud: 'PPSonarCloud'
     organization: '210503-reston-net'
     scannerMode: 'MSBuild'
-    projectKey: 'Embrey-James-P1'
+    projectKey: 'PatricksPeppers'
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
