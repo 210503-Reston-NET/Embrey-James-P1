@@ -31,3 +31,13 @@ steps:
   inputs:
     command: 'test'
     projects: '**/4-devops/PatricksPeppers/PPTests*.csproj'
+
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+   ConnectionType: 'AzureRM'
+   azureSubscription: 'Azure subscription 1(69afc419-81f4-445a-b5a6-653a79a3edaa)'
+   appType: 'webApp'
+   WebAppName: 'PatricksPeppers'
+   packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
