@@ -9,8 +9,8 @@ trigger:
 pool: Default
 
 variables:
-  solution: '**4-devops/PatricksPeppers/*.sln'
-  buildPlatform: 'Any CPU'
+  solution: '*.sln'
+  buildPlatform: 'ANY CPU'
   buildConfiguration: 'Release'
 
 steps:
