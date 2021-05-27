@@ -36,9 +36,17 @@ steps:
   inputs:
     command: 'test'
     projects: '**/Embrey-James-P1*.csproj'
+    arguments: --configuration $(buildConfiguration) --collect "Code Coverage"
+
 
 - task: SonarCloudAnalyze@1
   displayName: Run Code Analysis
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '$(PublishCodeCoverageResults@1)'
 
 
 - task: SonarCloudPublish@1
