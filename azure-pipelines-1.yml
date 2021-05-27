@@ -38,7 +38,7 @@ steps:
     projects: '**/4-devops/PatricksPeppers/PPTests*.csproj'
 
 - task: SonarCloudAnalyze@1
-  displayName: Run COde Analysis
+  displayName: Run Code Analysis
 
 - task: SonarCloudAnalyze@1
   displayName: Run Code Analysis
