@@ -35,7 +35,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '**/4-devops/PatricksPeppers/PPTests*.csproj'
+    projects: '**/Embrey-James-P1*.csproj'
 
 - task: SonarCloudAnalyze@1
   displayName: Run Code Analysis
