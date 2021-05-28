@@ -10,8 +10,8 @@ namespace PPDL
     public class RepoDB : IRepository
     {
         private Entity.PPDBContext _context;
-        
-        public RepoDB(Entity.PPDBContext context) 
+
+        public RepoDB(Entity.PPDBContext context)
         {
             _context = context;
         }
@@ -23,14 +23,15 @@ namespace PPDL
                 location => new Model.Location(location.LocationName, location.LocationCity, location.LocationState)
             ).ToList();
         }
-        
+
         public Model.Customers AddCustomer(Model.Customers customers)
         {
-            
+
             _context.Customers.Add(
-                new Entity.Customer{
-                CustomerName = customers.Name,
-                CustomerLocale = customers.Locale,
+                new Entity.Customer
+                {
+                    CustomerName = customers.Name,
+                    CustomerLocale = customers.Locale,
                 }
             );
             _context.SaveChanges();
@@ -44,7 +45,7 @@ namespace PPDL
                 product => new Model.Products(product.ProductName, product.ProductPrice)
             ).ToList();
         }
-        
+
 
         // public List<Model.Customers> GetAllCustomers()
         // {
@@ -58,14 +59,14 @@ namespace PPDL
         public Model.Customers GetCustomer(Model.Customers customers)
         {
             Entity.Customer found = _context.Customers.FirstOrDefault(custo => custo.CustomerName == customers.Name && custo.CustomerLocale == customers.Locale);
-            if(found == null) return null;
+            if (found == null) return null;
             return new Model.Customers(found.CustomerName, found.CustomerLocale);
         }
 
         public int GetCustomer1(Model.Customers customers)
         {
             Entity.Customer found = _context.Customers.FirstOrDefault(custo => custo.CustomerName == customers.Name && custo.CustomerLocale == customers.Locale);
-            if(found == null)
+            if (found == null)
             {
                 Console.WriteLine("Could not find customer");
             };
@@ -75,7 +76,7 @@ namespace PPDL
         public bool GetCustomer2(Model.Customers customers)
         {
             Entity.Customer found = _context.Customers.FirstOrDefault(custo => custo.CustomerName == customers.Name && custo.CustomerLocale == customers.Locale);
-            if(found == null) return false;
+            if (found == null) return false;
             return true;
         }
 
@@ -103,20 +104,21 @@ namespace PPDL
         //     //This method clears the change tracker to drop all tracked entities
         //     _context.ChangeTracker.Clear();
         // }
-    // }
+        // }
 
         public Model.Orders AddOrder(Model.Orders orders)
+        {
+            _context.Orders.Add(
+            new Entity.Order
             {
-                _context.Orders.Add(
-                new Entity.Order{
                 OrderId = orders.OrderId,
                 OrderQuantity = orders.OrderQuantity,
-                OrderNumber= orders.OrderNumber,
+                OrderNumber = orders.OrderNumber,
                 OrderTotal = orders.OrderTotal,
                 OrderLocation = orders.OrderLocation,
                 OrderDate = DateTime.Now
-                }
-            );
+            }
+        );
             _context.SaveChanges();
             return orders;
         }
@@ -124,7 +126,7 @@ namespace PPDL
         public Model.Orders GetOrders(Model.Orders orders)
         {
             Entity.Order found = _context.Orders.FirstOrDefault(ord => ord.OrderId == orders.OrderId);
-            if(found == null) return null;
+            if (found == null) return null;
             return new Model.Orders(found.OrderId, found.OrderQuantity, found.OrderNumber, found.OrderTotal, found.OrderLocation);
         }
 
@@ -152,11 +154,11 @@ namespace PPDL
 
         }
 
-        
+
 
         public void UpdateInventory(Model.Inventory inventory2BeUpdated)
         {
-            
+
 
             Entity.Inventory oldInventory = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
 
@@ -175,57 +177,57 @@ namespace PPDL
 
             _context.SaveChanges();
 
-        //     // _context.ChangeTracker.Clear();
+            //     // _context.ChangeTracker.Clear();
 
         }
 
         public Model.Inventory GetInventory(int prod, int loc)
         {
             Entity.Inventory found = _context.Inventories.FirstOrDefault(inv => inv.InventoryNumber == prod && inv.InventoryCode == loc);
-            if(found == null) return null;
+            if (found == null) return null;
             return new Model.Inventory(found.InventoryId, found.InventoryNumber, found.InventoryQuantity, found.InventoryCode);
 
-        //     // _context.ChangeTracker.Clear();
+            //     // _context.ChangeTracker.Clear();
 
         }
 
         public void DecrementInventory(Model.Inventory inventory2BeUpdated)
         {
-            
+
 
             Entity.Inventory oldInventory = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
-            
+
             // Console.WriteLine(oldInventory.ToString());
             // Console.WriteLine(oldInventory.ToString());
 
             // _context.Entry(oldInventory).CurrentValues.SetValues(inventory2BeUpdated);
-            
-            
-            
+
+
+
 
 
             // Entity.Inventory oldInventory1 = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
-            
+
 
             oldInventory.InventoryQuantity = inventory2BeUpdated.InventoryQuantity - 1;
-            
+
 
             // oldInventory1.InventoryQuantity = inventory2BeUpdated.InventoryTotal;
 
             // _context.Entry(oldInventory).CurrentValues.SetValues((inventory2BeUpdated));
-            
+
 
             _context.SaveChanges();
 
-        //     // _context.ChangeTracker.Clear();
+            //     // _context.ChangeTracker.Clear();
 
         }
 
         public int GetLocation(string location)
         {
             Entity.Location found = _context.Locations.FirstOrDefault(loc => loc.LocationState == location);
-            if(found == null)
-            Console.WriteLine("Could not find location!");
+            if (found == null)
+                Console.WriteLine("Could not find location!");
             return found.LocationId;
         }
 
@@ -242,91 +244,91 @@ namespace PPDL
         // }
 
 
-    // {
-    //     private Entity.PPDBContext _context;
+        // {
+        //     private Entity.PPDBContext _context;
 
 
-    //     public RepoDB(Entity.PPDBContext context)
-    //     {
-    //         _context = context;
-    //     }
-    //     public PPModels.Customers AddCustomer(PPModels.Customers customers)
-    //         {
-    //         //This records a change in the context change tracker that we want to add this particular entity to the 
-    //         // db
-    //                 Entity.Customer tobeAdded = _context.Customers.First(custo => custo.Id == customers.Id);
-    //                 _context.Customers.Add(toBeAdded);
-    //                 _context.SaveChanges();
-    //                 return customers;
-    //                 _context.Customers.Add(
-    //                 new Entity.Customer
-    //                 {
-    //                     CustomerName = customers.Name
-    //                 }
-    //                 );
-    // // //         //This persists the change to the db
-    // // //         // Note: you can create a separate method that persists the changes so that you can execute repo commands in
-    // // //         //the BL and save changes only when all the operations return no exceptions
-    //                 _context.SaveChanges(customers);
-    //                 return customers;
-    //         }
+        //     public RepoDB(Entity.PPDBContext context)
+        //     {
+        //         _context = context;
+        //     }
+        //     public PPModels.Customers AddCustomer(PPModels.Customers customers)
+        //         {
+        //         //This records a change in the context change tracker that we want to add this particular entity to the 
+        //         // db
+        //                 Entity.Customer tobeAdded = _context.Customers.First(custo => custo.Id == customers.Id);
+        //                 _context.Customers.Add(toBeAdded);
+        //                 _context.SaveChanges();
+        //                 return customers;
+        //                 _context.Customers.Add(
+        //                 new Entity.Customer
+        //                 {
+        //                     CustomerName = customers.Name
+        //                 }
+        //                 );
+        // // //         //This persists the change to the db
+        // // //         // Note: you can create a separate method that persists the changes so that you can execute repo commands in
+        // // //         //the BL and save changes only when all the operations return no exceptions
+        //                 _context.SaveChanges(customers);
+        //                 return customers;
+        //         }
 
-        
-        
-    // // //     public PPModels.Location AddLocation(Location location)
-    // // //     {
-    // // //         _context.Locations.Add(
-    // // //             new Entity.Location
-    // // //             {
-    // // //                 LocationName = location.Name,
-    // // //                 LocationCity = location.City,
-    // // //                 LocationState = location.State,
-    // // //             }
-    // // //         );
-    // // //         _context.SaveChanges();
-    // // //         return location;
-    // // //     }
 
-    // // //     // public Customers DeleteCustomer(Customers customers)
-    // // //     // {
-    // // //     //     Entity.Customer toBeDeleted = _context.Customers.First(custo => custo.Id == customers.Id);
-    // // //     //     _context.Customers.Remove(toBeDeleted);
-    // // //     //     _context.SaveChanges();
-    // // //     //     return customers;
-    // // //     // }
 
-    // // //     // public List<PPModels.Customers> GetAllCustomers()
-    // // //     // {
-    // // //     //     return _context.Customers
-    // // //     //     .Select(
-    // // //     //         customers => new PPModels.Customers(customers.CustomerName, customers.CustomerLocale)
-    // // //     //     ).ToList();
-    // // //     // }
+        // // //     public PPModels.Location AddLocation(Location location)
+        // // //     {
+        // // //         _context.Locations.Add(
+        // // //             new Entity.Location
+        // // //             {
+        // // //                 LocationName = location.Name,
+        // // //                 LocationCity = location.City,
+        // // //                 LocationState = location.State,
+        // // //             }
+        // // //         );
+        // // //         _context.SaveChanges();
+        // // //         return location;
+        // // //     }
 
-    // // //     // public PPModels.Customers GetCustomer(PPModels.Customers customers)
-    // // //     // {
-    // // //     //     Entity.Customer found = _context.Customers.FirstOrDefault(custo => custo.Name == customers.Name);
-    // // //     //     if (found == null) return null;
-    // // //     //     return new Customer(found.CustomerId, found.CustomerName, found.CustomerLocale);
-    // // //     // }
+        // // //     // public Customers DeleteCustomer(Customers customers)
+        // // //     // {
+        // // //     //     Entity.Customer toBeDeleted = _context.Customers.First(custo => custo.Id == customers.Id);
+        // // //     //     _context.Customers.Remove(toBeDeleted);
+        // // //     //     _context.SaveChanges();
+        // // //     //     return customers;
+        // // //     // }
 
-    // // //     public List<Customers> GetCustomers(Customers customers)
-    // // //     {
-    // // //         return _context.Customers.Where(
-    // // //             customers => name.CustomerId == GetCustomer(customer).Id
-    // // //             ).Select(
-    // // //                 customers=> new PPModels.Customers
-    // // //                 {
-    // // //                     customerId = customer.Id,
-    // // //                 }
-    // // //             ).ToList();
-    // // //     }
+        // // //     // public List<PPModels.Customers> GetAllCustomers()
+        // // //     // {
+        // // //     //     return _context.Customers
+        // // //     //     .Select(
+        // // //     //         customers => new PPModels.Customers(customers.CustomerName, customers.CustomerLocale)
+        // // //     //     ).ToList();
+        // // //     // }
 
-                
+        // // //     // public PPModels.Customers GetCustomer(PPModels.Customers customers)
+        // // //     // {
+        // // //     //     Entity.Customer found = _context.Customers.FirstOrDefault(custo => custo.Name == customers.Name);
+        // // //     //     if (found == null) return null;
+        // // //     //     return new Customer(found.CustomerId, found.CustomerName, found.CustomerLocale);
+        // // //     // }
 
-    //         public Orders GetOrders(Orders orders)
-    //         {
-    //             Entity.Order;
-    //         }
+        // // //     public List<Customers> GetCustomers(Customers customers)
+        // // //     {
+        // // //         return _context.Customers.Where(
+        // // //             customers => name.CustomerId == GetCustomer(customer).Id
+        // // //             ).Select(
+        // // //                 customers=> new PPModels.Customers
+        // // //                 {
+        // // //                     customerId = customer.Id,
+        // // //                 }
+        // // //             ).ToList();
+        // // //     }
+
+
+
+        //         public Orders GetOrders(Orders orders)
+        //         {
+        //             Entity.Order;
+        //         }
     }
 }

@@ -8,16 +8,16 @@ namespace PPModels
 {
     public class Manager
     {
-            public Manager (string mname)
-            {
-                this.mName = mname;
-            }
+        public Manager(string mname)
+        {
+            this.mName = mname;
+        }
 
-            public string mName { get; set; }
+        public string mName { get; set; }
 
-            public override string ToString()
-            {
-                return $"mName: {this.mName}";
-            }
+        public override string ToString()
+        {
+            return $"mName: {this.mName}";
+        }
     }
 }

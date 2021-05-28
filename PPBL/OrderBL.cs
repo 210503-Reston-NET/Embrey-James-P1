@@ -8,7 +8,7 @@ namespace PPBL
     public class OrderBL : IOrderBL
     {
         
-    private IRepository _repo;
+    public IRepository _repo;
 
     public OrderBL(IRepository repo)
     {

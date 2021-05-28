@@ -1,7 +1,7 @@
 using System.Security.AccessControl;
 using System.Security.Cryptography.X509Certificates;
 using System.Reflection.Metadata;
-using Model = PPModels;
+/*using Model = PPModels;*/
 using System.Reflection.Metadata.Ecma335;
 using Entity = PortablePdbBuilder.Entities;
 using Xunit;
@@ -19,12 +19,12 @@ namespace PPTests
         // {
         //     Assert.Equal({names} = "James");
         // } 
-        private readonly DBContextOptions<Entity.PPDBContext> options;
+        private readonly DBContextOptions<PPDBContext> options;
         //XUnit creates new instances of test classes, you need to make sure that you seed your db for each class
 
         public RepoTest()
         {
-            options = new DBContextOptionsBuilder<Entity.PPDBContext>()
+            options = new DBContextOptionsBuilder<PPDBContext>()
             .UseSqlite("Filename=Test.db").Seed();
 
         }

@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic; 
 using PPDL;
 using PPModels;
-using Entity = PPDL.Entities;
 
 namespace PPBL
 {
     public class InventoryBL : IInventoryBL
     {
         
-    private IRepository _repo;
+    public IRepository _repo;
 
     public InventoryBL(IRepository repo)
     {

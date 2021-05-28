@@ -34,7 +34,7 @@ namespace PPDL
         List<Location> GetAllLocations();
 
         List<Products> GetAllProducts();
-    
+
 
         // int DeleteProduct(Products products);
 

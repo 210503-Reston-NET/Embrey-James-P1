@@ -7,7 +7,7 @@ namespace PPModels
 {
     public class Inventory
     {
-        public Inventory (int inventoryId, int inventoryNumber, int inventoryQuantity, int inventoryCode)
+        public Inventory(int inventoryId, int inventoryNumber, int inventoryQuantity, int inventoryCode)
         {
             this.InventoryId = inventoryId;
             this.InventoryNumber = inventoryNumber;
@@ -19,7 +19,7 @@ namespace PPModels
         public int InventoryNumber { get; set; }
 
         public int InventoryQuantity { get; set; } = 1;
-        public double InventoryCode {get; set; }
+        public double InventoryCode { get; set; }
 
         public override string ToString()
         {

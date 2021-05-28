@@ -7,7 +7,7 @@ namespace PPModels
 
     public class Products
     {
-        public Products (int productId, string productName, int productQuantity, double productPrice)
+        public Products(int productId, string productName, int productQuantity, double productPrice)
         {
             this.ProductId = productId;
             this.ProductName = productName;
@@ -16,7 +16,7 @@ namespace PPModels
 
         }
 
-        public Products (string productName, double productPrice)
+        public Products(string productName, double productPrice)
         {
             this.ProductName = productName;
             this.ProductPrice = productPrice;
@@ -37,7 +37,7 @@ namespace PPModels
         }
         // static void Main(string[] args)
         // {
-                
+
         // }
     }
 }

@@ -13,7 +13,7 @@ namespace PPModels
             this.Name = name;
             this.Locale = locale;
         }
-        
+
         public string Name { get; set; }
         // { 
         //     get { return name; }

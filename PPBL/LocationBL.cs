@@ -7,7 +7,7 @@ namespace PPBL
 {
     public class LocationBL : ILocationBL
     {
-        private IRepository _repo;
+        public IRepository _repo;
 
     public LocationBL(IRepository repo)
     {

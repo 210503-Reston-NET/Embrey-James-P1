@@ -6,7 +6,7 @@ namespace PPModels
 {
     public class Location
     {
-        public Location (string name, string city, string state)
+        public Location(string name, string city, string state)
         {
             this.Name = name;
             this.City = city;
@@ -19,8 +19,8 @@ namespace PPModels
 
         public override string ToString()
         {
-            return $"Name: {this.Name} \nCity: {this.City} \nState: {this.State}" ;
+            return $"Name: {this.Name} \nCity: {this.City} \nState: {this.State}";
         }
-        
+
     }
 }

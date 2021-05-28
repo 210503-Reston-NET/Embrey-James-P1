@@ -10,7 +10,7 @@ namespace PPBL
     {
         
 
-    private IRepository _repo;
+    public IRepository _repo;
 
     public CustomerBL(IRepository repo)
     {
