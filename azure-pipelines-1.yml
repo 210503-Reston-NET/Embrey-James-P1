@@ -1,0 +1,75 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool: Default
+
+variables:
+  solution: '*.sln'
+  buildPlatform: 'ANY CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'PPSonarCloud'
+    organization: '210503-reston-net'
+    scannerMode: 'MSBuild'
+    projectKey: 'PatricksPeppers'
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: 'restore'
+    projects: '$(solution)'
+    feedsToUse: 'select'
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: 'build'
+    projects: $(solution)
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/Embrey-James-P1*.csproj'
+    arguments: --configuration $(buildConfiguration) --collect "Code Coverage"
+
+
+- task: SonarCloudAnalyze@1
+  displayName: Run Code Analysis
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '$(PublishCodeCoverageResults@1)'
+
+
+- task: SonarCloudPublish@1
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+  displayName: Publish Code Analysis
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    zipAfterPublish: true
+    projects: '**PPWebUI/*.csproj'
+
+
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+   ConnectionType: 'AzureRM'
+   azureSubscription: 'Azure subscription 1(69afc419-81f4-445a-b5a6-653a79a3edaa)'
+   appType: 'webApp'
+   WebAppName: 'PatricksPeppers'
+   packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
