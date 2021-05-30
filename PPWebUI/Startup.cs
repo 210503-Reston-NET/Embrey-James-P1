@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PPDL;
+using PPBL;
 using PPDL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
@@ -32,6 +33,9 @@ namespace PPWebUI
             {
                 options.UseNpgsql(Configuration.GetConnectionString("PPDB"));
             });
+            services.AddScoped<IRepository, RepoDB>();
+            services.AddScoped<IProductBL, ProductBL>();
+            services.AddScoped<ICustomerBL, CustomerBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +48,6 @@ namespace PPWebUI
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
