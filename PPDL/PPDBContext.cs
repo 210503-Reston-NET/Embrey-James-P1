@@ -24,7 +24,7 @@ namespace PPDL.Entities
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         /*public virtual DbSet<LineItem> LineItems { get; set; }*/
-        public DbSet<Location> Location { get; set; }
+        public DbSet<Location> Locations { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Products> Products { get; set; }

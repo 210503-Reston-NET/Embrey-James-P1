@@ -24,7 +24,7 @@ namespace PPBL
         {
             if(_repo.GetLocation(location)!= null)
             {
-                throw new Exception("Product already exists!");
+                throw new Exception("Location already exists!");
                 return new Location();
 
             }

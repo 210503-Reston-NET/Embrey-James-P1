@@ -36,6 +36,9 @@ namespace PPWebUI
             services.AddScoped<IRepository, RepoDB>();
             services.AddScoped<IProductBL, ProductBL>();
             services.AddScoped<ICustomerBL, CustomerBL>();
+            services.AddScoped<ILocationBL, LocationBL>();
+            services.AddScoped<IOrderBL, OrderBL>();
+            services.AddScoped<IInventoryBL, InventoryBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

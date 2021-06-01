@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PPDL;
+using PPBL;
+using PPWebUI.Models;
+using PPModels;
 
 namespace PPWebUI.Controllers
 {
@@ -30,7 +34,7 @@ namespace PPWebUI.Controllers
         // POST: OrderController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(OrderVM orderVM)
         {
             try
             {
@@ -51,7 +55,7 @@ namespace PPWebUI.Controllers
         // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, OrderVM orderVM)
         {
             try
             {
@@ -72,7 +76,7 @@ namespace PPWebUI.Controllers
         // POST: OrderController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, OrderVM orderVM)
         {
             try
             {

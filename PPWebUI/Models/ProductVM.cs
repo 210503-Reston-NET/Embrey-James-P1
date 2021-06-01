@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PPModels;
 using System.Text.RegularExpressions;
 
@@ -24,16 +25,10 @@ namespace PPWebUI.Models
         }
 
         public int Id { get; set; }
-
-
         [Required]
-        
         public string name { get; set; }
-
         [Required]
-
-        public int quantity { get; set; }
-        
+        public int quantity { get; set; }      
         public double price { get; set; }
         
     }

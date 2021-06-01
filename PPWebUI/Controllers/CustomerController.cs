@@ -88,7 +88,19 @@ namespace PPWebUI.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+
+                if (ModelState.IsValid)
+                {
+                    _customerBL.AddCustomer(new Customer
+                    {
+                        CustomerId = customerVM.Id,
+                        Name = customerVM.name,
+                        Locale = customerVM.locale,
+                    }
+                    );
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             catch
             {

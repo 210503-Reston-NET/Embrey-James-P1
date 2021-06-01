@@ -74,10 +74,11 @@ namespace PPWebUI.Controllers
         }
 
         // GET: ProductController/Edit/5
-        public ActionResult Edit(int id)
+        /*public ActionResult Edit(int id)
         {
-            return View();
-        }
+            *//*var prd = _productBL.GetAllProducts(prod => prod.ProductId == Id).FirstOrDefault();*/
+            /*return View(new ProductVM(_productBL.UpdateProduct(id)));*//*
+        }*/
 
         // POST: ProductController/Edit/5
         [HttpPost]
@@ -86,7 +87,13 @@ namespace PPWebUI.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var a = productVM.Id;
+                var b = productVM.name;
+                var c = productVM.quantity;
+                var d = productVM.price;
+
+                /*_productBL.UpdateProduct(new Products(productVM.Id, productVM.name, productVM.quantity, productVM.price));*/
+                    return RedirectToAction(nameof(Index));     
             }
             catch
             {

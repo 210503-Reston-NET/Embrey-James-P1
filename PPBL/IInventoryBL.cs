@@ -5,10 +5,10 @@ namespace PPBL
 {
     public interface IInventoryBL
     {
-        void UpdateInventory(Inventory inventory2BeUpdated);
+        /*void UpdateInventory(Inventory inventory2BeUpdated);
 
         void DecrementInventory(Inventory inventory);
 
-        Inventory GetInventory(int prod, int loc);
+        Inventory GetInventory(int prod, int loc);*/
     }
 }

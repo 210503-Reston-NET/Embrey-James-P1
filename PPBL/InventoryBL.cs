@@ -29,20 +29,20 @@ namespace PPBL
     // //     return _repo.GetInventory(inventoryitems);
     // // }
 
-    public void UpdateInventory(Inventory inventory2BeUpdated)
+    /*public void UpdateInventory(Inventory inventory2BeUpdated)
     {
         _repo.UpdateInventory(inventory2BeUpdated);
-    }
+    }*/
 
-    public void DecrementInventory(Inventory inventory)
+    /*public void DecrementInventory(Inventory inventory)
     {
         _repo.DecrementInventory(inventory);
-    }
+    }*/
 
-    public Inventory GetInventory(int prod, int loc)
+    /*public Inventory GetInventory(int prod, int loc)
     {
         return _repo.GetInventory(prod, loc);
-    }
+    }*/
     
 
     }

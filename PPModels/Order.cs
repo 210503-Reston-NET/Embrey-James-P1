@@ -15,7 +15,6 @@ namespace PPModels
             this.OrderTotal = orderTotal;
             this.OrderLocation = orderLocation;
             this.OrderDate = orderDate;
-
         }
 
         public Order()

@@ -36,6 +36,6 @@ namespace PPWebUI.Models
 
         public string State { get; set; }
 
-        /*public List<Inventory> Inventories { get; set; }*/
+        
     }
 }

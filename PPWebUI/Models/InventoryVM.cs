@@ -6,12 +6,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PPModels;
+using System.Text.RegularExpressions;
 
 namespace PPWebUI.Models
 {
     public class InventoryVM
     {
-        public InventoryVM() { }
+        public InventoryVM()
+        {
+            
+        }
 
         public InventoryVM(Inventory inventory)
         {
@@ -22,11 +26,8 @@ namespace PPWebUI.Models
         }
         public int Id { get; set; }
         public int Number { get; set; }
-        /*[DisplayName("Product")]*/
         public int Quantity { get; set; }
-        /*[Required]*/
-        /*public int LocationId { get; set; }
-        [Required]*/
+        
 
         public int Code { get; set; }
         public List<SelectListItem> ProductOptions { get; set; }

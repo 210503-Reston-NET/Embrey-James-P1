@@ -5,8 +5,8 @@ namespace PPBL
 {
     public interface IOrderBL
     {
-        Order AddOrder(Order orders);
+        /*Order AddOrder(Order orders);
         Order GetOrders(Order orders);
-        void UpdateOrder(Order order2BeUpdated);
+        void UpdateOrder(Order order2BeUpdated);*/
     }
 }
