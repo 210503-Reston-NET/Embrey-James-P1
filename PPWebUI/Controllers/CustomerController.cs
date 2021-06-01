@@ -11,58 +11,60 @@ using PPModels;
 
 namespace PPWebUI.Controllers
 {
-    public class ProductController : Controller
+    public class CustomerController : Controller
     {
-        private IProductBL _productBL;
+        private ICustomerBL _customerBL;
 
-        public ProductController(IProductBL pBL)
+        public CustomerController(ICustomerBL cBL)
         {
-            _productBL = pBL;
+            this._customerBL = cBL;
         }
-        // GET: ProductController
+        // GET: CustomerController
         public ActionResult Index()
         {
-            return View(_productBL.GetAllProducts().Select(prod => new ProductVM(prod)).ToList());
+            return View(_customerBL.GetAllCustomers().Select(custo => new CustomerVM(custo)).ToList());
         }
 
-        // GET: ProductController/Details/5
+        // GET: CustomerController/Details/5
         public ActionResult Details(int id)
         {
             return View
                 (
-                _productBL.GetAllProducts()
-                .Select(product => new ProductVM(product))
+                _customerBL.GetAllCustomers()
+                .Select(customer => new CustomerVM(customer))
                 .ToList()
                 );
         }
 
-        // GET: ProductController/Create
+        // GET: CustomerController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ProductController/Create
+        // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductVM productVM)
+        public ActionResult Create(CustomerVM customerVM)
         {
             try
             {
-                var a = productVM.Id;
-                var b = productVM.name;
-                var c = productVM.quantity;
-                var d = productVM.price;
+                var a = customerVM.Id;
+                var b = customerVM.name;
+                var c = customerVM.locale;
+
+                Random nums = new Random();
+                int ID = nums.Next(1111, 9999);
 
                 if (ModelState.IsValid)
                 {
-                    _productBL.AddProducts(new Products
+                    _customerBL.AddCustomer(new Customer
                     {
-                        ProductId = productVM.Id,
-                        ProductName = productVM.name,
-                        ProductQuantity = productVM.quantity,
-                        ProductPrice = productVM.price
-                    });
+                        CustomerId = ID,
+                        Name = customerVM.name,
+                        Locale = customerVM.locale,
+                    }
+                    );
                     return RedirectToAction(nameof(Index));
                 }
                 return View();
@@ -73,16 +75,16 @@ namespace PPWebUI.Controllers
             }
         }
 
-        // GET: ProductController/Edit/5
+        // GET: CustomerController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Edit/5
+        // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, ProductVM productVM)
+        public ActionResult Edit(int id, CustomerVM customerVM)
         {
             try
             {
@@ -94,16 +96,16 @@ namespace PPWebUI.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
+        // GET: CustomerController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Delete/5
+        // POST: CustomerController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, ProductVM productVM)
+        public ActionResult Delete(int id, CustomerVM customerVM)
         {
             try
             {

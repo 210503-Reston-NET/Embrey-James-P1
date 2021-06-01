@@ -8,7 +8,6 @@ namespace PPBL
 {
     public class CustomerBL : ICustomerBL
     {
-        
 
     public IRepository _repo;
 
@@ -17,9 +16,14 @@ namespace PPBL
         _repo = repo;
     }
 
+    public List<Customer> GetAllCustomers()
+    {
+        return _repo.GetAllCustomers();
+    }
 
 
-    public Customers AddCustomer(Customers customers)
+
+        public Customer AddCustomer(Customer customers)
     {
         if(_repo.GetCustomer(customers)!=null)
         {
@@ -28,16 +32,16 @@ namespace PPBL
         return _repo.AddCustomer(customers);
     }
 
-    public Customers GetCustomer(Customers customers)
+    public Customer GetCustomer(Customer customers)
     {
         return _repo.GetCustomer(customers);
     }
-    public int GetCustomer1(Customers customers)
+    public int GetCustomer1(Customer customers)
     {
         return _repo.GetCustomer1(customers);
     }
 
-    public bool GetCustomer2(Customers customers)
+    public bool GetCustomer2(Customer customers)
     {
         return _repo.GetCustomer2(customers);
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace PPModels
@@ -7,21 +8,28 @@ namespace PPModels
 
     public class Products
     {
+        private Products products;
+
         public Products(int productId, string productName, int productQuantity, double productPrice)
         {
             this.ProductId = productId;
             this.ProductName = productName;
             this.ProductQuantity = productQuantity;
             this.ProductPrice = productPrice;
-
         }
 
-        public Products(string productName, double productPrice)
+        public Products()
         {
-            this.ProductName = productName;
-            this.ProductPrice = productPrice;
+            
         }
 
+        public Products(Products products)
+        {
+            this.products = products;
+        }
+
+
+        [Key]
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int ProductQuantity { get; set; }

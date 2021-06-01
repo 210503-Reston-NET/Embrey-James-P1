@@ -5,8 +5,8 @@ namespace PPBL
     {
       public interface IProductBL
         {
-        // List<Products> GetAllProducts();
-//         Product AddProducts(Products products);
+        Products AddProducts(Products products);
+        
         List<Products> GetAllProducts();
         // Product DeleteProducts(Products products);
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 
@@ -15,11 +16,12 @@ namespace PPModels
             this.InventoryCode = inventoryCode;
         }
 
+        [Key]
+
         public int InventoryId { get; set; }
         public int InventoryNumber { get; set; }
-
         public int InventoryQuantity { get; set; } = 1;
-        public double InventoryCode { get; set; }
+        public int InventoryCode { get; set; }
 
         public override string ToString()
         {

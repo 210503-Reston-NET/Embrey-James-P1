@@ -11,57 +11,57 @@ using PPModels;
 
 namespace PPWebUI.Controllers
 {
-    public class ProductController : Controller
+    public class LocationController : Controller
     {
-        private IProductBL _productBL;
+        private ILocationBL _locationBL;
 
-        public ProductController(IProductBL pBL)
+        public LocationController(ILocationBL lBL)
         {
-            _productBL = pBL;
+            this._locationBL = lBL;
         }
-        // GET: ProductController
+        // GET: LocationController
         public ActionResult Index()
         {
-            return View(_productBL.GetAllProducts().Select(prod => new ProductVM(prod)).ToList());
+            return View(_locationBL.GetAllLocations().Select(loc => new LocationVM(loc)).ToList());
         }
 
-        // GET: ProductController/Details/5
+        // GET: LocationController/Details/5
         public ActionResult Details(int id)
         {
             return View
                 (
-                _productBL.GetAllProducts()
-                .Select(product => new ProductVM(product))
+                _locationBL.GetAllLocations()
+                .Select(location => new LocationVM(location))
                 .ToList()
                 );
         }
 
-        // GET: ProductController/Create
+        // GET: LocationController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ProductController/Create
+        // POST: LocationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductVM productVM)
+        public ActionResult Create(LocationVM locationVM)
         {
             try
             {
-                var a = productVM.Id;
-                var b = productVM.name;
-                var c = productVM.quantity;
-                var d = productVM.price;
+                var a = locationVM.Id;
+                var b = locationVM.Name;
+                var c = locationVM.City;
+                var d = locationVM.State;
 
                 if (ModelState.IsValid)
                 {
-                    _productBL.AddProducts(new Products
+                    _locationBL.AddLocation(new Location
                     {
-                        ProductId = productVM.Id,
-                        ProductName = productVM.name,
-                        ProductQuantity = productVM.quantity,
-                        ProductPrice = productVM.price
+                        LocationId = locationVM.Id,
+                        Name = locationVM.Name,
+                        City = locationVM.City,
+                        State = locationVM.State
                     });
                     return RedirectToAction(nameof(Index));
                 }
@@ -73,16 +73,16 @@ namespace PPWebUI.Controllers
             }
         }
 
-        // GET: ProductController/Edit/5
+        // GET: LocationController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Edit/5
+        // POST: LocationController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, ProductVM productVM)
+        public ActionResult Edit(int id, LocationVM locationVM)
         {
             try
             {
@@ -94,16 +94,16 @@ namespace PPWebUI.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
+        // GET: LocationController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Delete/5
+        // POST: LocationController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, ProductVM productVM)
+        public ActionResult Delete(int id, LocationVM locationVM)
         {
             try
             {

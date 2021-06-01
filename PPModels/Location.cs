@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace PPModels
 {
     public class Location
     {
+        private Location location;
+
         public Location(string name, string city, string state)
         {
             this.Name = name;
@@ -13,9 +16,18 @@ namespace PPModels
             this.State = state;
         }
 
+        public Location()
+        {
+
+        }
+
+
         public string Name { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        
+        [Key]
+        public int LocationId { get; set; }
 
         public override string ToString()
         {

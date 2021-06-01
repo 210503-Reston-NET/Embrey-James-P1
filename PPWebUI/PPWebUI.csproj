@@ -22,4 +22,8 @@
     <ProjectReference Include="..\PPModels\PPModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Orders\" />
+  </ItemGroup>
+
 </Project>

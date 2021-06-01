@@ -1,17 +1,24 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace PPModels
 {
-    public class Customers
+    public class Customer
     {
         // private string _locale;
 
-        public Customers(string name, string locale)
+        public Customer(int id, string name, string locale)
         {
+            this.CustomerId = id;
             this.Name = name;
             this.Locale = locale;
+        }
+
+        public Customer()
+        {
+
         }
 
         public string Name { get; set; }
@@ -35,6 +42,9 @@ namespace PPModels
         // }
 
         public int Quantity { get; set; }
+
+        [Key]
+        public int CustomerId { get; set; }
 
         public override string ToString()
         {

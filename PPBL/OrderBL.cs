@@ -15,7 +15,7 @@ namespace PPBL
         _repo = repo;
     }
 
-    public Orders AddOrder(Orders orders)
+    public Order AddOrder(Order orders)
     {
         if(_repo.GetOrders(orders)!=null)
         {
@@ -24,12 +24,12 @@ namespace PPBL
         return _repo.AddOrder(orders);
     }
 
-    public Orders GetOrders(Orders orders)
+    public Order GetOrders(Order orders)
     {
         return _repo.GetOrders(orders);
     }
 
-    public void UpdateOrder(Orders order2BeUpdated)
+    public void UpdateOrder(Order order2BeUpdated)
     {
         _repo.UpdateOrder(order2BeUpdated);
     }

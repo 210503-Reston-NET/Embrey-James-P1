@@ -1,71 +1,70 @@
 using System;
 using System.Collections.Generic;
 using Model = PPModels;
-using Entity = PPDL.Entities;
 using System.Linq;
-
+using PPModels;
 
 namespace PPDL
 {
     public class RepoDB : IRepository
     {
-        private Entity.PPDBContext _context;
+        private Entities.PPDBContext _context;
 
-        public RepoDB(Entity.PPDBContext context)
+        public RepoDB(Entities.PPDBContext context)
         {
             _context = context;
         }
 
-        public List<Model.Location> GetAllLocations()
+        public List<Location> GetAllLocations()
         {
-            return _context.Locations
+            return _context.Location
             .Select(
-                location => new Model.Location(location.LocationName, location.LocationCity, location.LocationState)
+                location => new Location(location.Name, location.City, location.State)
             ).ToList();
         }
 
-        public Model.Customers AddCustomer(Model.Customers customers)
+        public Customer AddCustomer(Customer customers)
         {
 
             _context.Customers.Add(
-                new Entity.Customer
+                new Customer
                 {
-                    CustomerName = customers.Name,
-                    CustomerLocale = customers.Locale,
+                    Name = customers.Name,
+                    Locale = customers.Locale
                 }
             );
             _context.SaveChanges();
             return customers;
         }
 
-        public List<Model.Products> GetAllProducts()
+        public List<Products> GetAllProducts()
         {
             return _context.Products
             .Select(
-                product => new Model.Products(product.ProductName, product.ProductPrice)
+                product => new Products(product.ProductId, product.ProductName, product.ProductQuantity, product.ProductPrice)
             ).ToList();
         }
 
 
-        // public List<Model.Customers> GetAllCustomers()
-        // {
-        //     return _context.Customers
-        //     .Select(
-        //         customers => new Model.Customers(customers.Name, customer.Locale, customer.Quantity)
-        //     ).ToList();
-        // }
-
-
-        public Model.Customers GetCustomer(Model.Customers customers)
+        public List<Customer> GetAllCustomers()
         {
-            Entity.Customer found = _context.Customers.FirstOrDefault(custo => custo.CustomerName == customers.Name && custo.CustomerLocale == customers.Locale);
-            if (found == null) return null;
-            return new Model.Customers(found.CustomerName, found.CustomerLocale);
+            return _context.Customers
+            .Select(
+            customers => new Customer(customers.CustomerId, customers.Name, customers.Locale)
+            ).ToList();
         }
 
-        public int GetCustomer1(Model.Customers customers)
+
+        public Customer GetCustomer(Customer customers)
         {
-            Entity.Customer found = _context.Customers.FirstOrDefault(custo => custo.CustomerName == customers.Name && custo.CustomerLocale == customers.Locale);
+            Customer found = _context.Customers.FirstOrDefault(custo => custo.Name == customers.Name && custo.Locale == customers.Locale);
+            if (found == null) return null;
+            return new Customer(found.CustomerId, found.Name, found.Locale);
+        }
+
+        public int GetCustomer1(Model.Customer customers)
+        {
+            Model.Customer found = _context.Customers.FirstOrDefault(custo => custo.Name == customers.Name && custo.Locale == customers.Locale);
             if (found == null)
             {
                 Console.WriteLine("Could not find customer");
@@ -73,72 +72,65 @@ namespace PPDL
             return found.CustomerId;
         }
 
-        public bool GetCustomer2(Model.Customers customers)
+        public bool GetCustomer2(Model.Customer customers)
         {
-            Entity.Customer found = _context.Customers.FirstOrDefault(custo => custo.CustomerName == customers.Name && custo.CustomerLocale == customers.Locale);
+            Model.Customer found = _context.Customers.FirstOrDefault(custo => custo.Name == customers.Name && custo.Locale == customers.Locale);
             if (found == null) return false;
             return true;
         }
 
-        // public Model.Products GetProducts(Model.Products products)
-        // {
-        //     Entity.Product found = _context.Products.FirstOrDefault(prod => prod.ProductId == products.ProductId);
-        //     if(found == null) return null;
-        //     return new Model.Products(found.ProductId, found.ProductName, found.ProductQuantity, found.ProductPrice);
-        // }
 
-        // public void UpdateProduct(Product product2BUpdated)
-        // {
-        //     Entity.Product oldProduct = _context.Products.Find(product2BUpdated.Id);
-        //     _context.Entry(oldProduct).CurrentValues.SetValues(product2BUpdated);
+            // public void UpdateProduct(Product product2BUpdated)
+            // {
+            //     Entity.Product oldProduct = _context.Products.Find(product2BUpdated.Id);
+            //     _context.Entry(oldProduct).CurrentValues.SetValues(product2BUpdated);
 
-        //     //Because I am not mapping the hero property in my mapper, i am unable to use the method
-        //     //_context.Entry(oldSuperPower).CurrentValues.SetValues(_mapper.ParseSuperPower(hero2BUpdated.SuperPower))
-        //     // this would throw an error because i have established a 1:1 relationship between my heroes and superpower
-        //     //tables. Instead, I take advantage of the change tracker and use it to update the superpower
-        //     Entity.Product oldProducts = _context.Productz.Find(product2BUpdated.Product.Id);
-        //     oldProduct.productQuantity = product2BUpdated.productQuantity;
+            //     //Because I am not mapping the hero property in my mapper, i am unable to use the method
+            //     //_context.Entry(oldSuperPower).CurrentValues.SetValues(_mapper.ParseSuperPower(hero2BUpdated.SuperPower))
+            //     // this would throw an error because i have established a 1:1 relationship between my heroes and superpower
+            //     //tables. Instead, I take advantage of the change tracker and use it to update the superpower
+            //     Entity.Product oldProducts = _context.Productz.Find(product2BUpdated.Product.Id);
+            //     oldProduct.productQuantity = product2BUpdated.productQuantity;
 
-        //     _context.SaveChanges();
+            //     _context.SaveChanges();
 
-        //     //This method clears the change tracker to drop all tracked entities
-        //     _context.ChangeTracker.Clear();
-        // }
-        // }
+            //     //This method clears the change tracker to drop all tracked entities
+            //     _context.ChangeTracker.Clear();
+            // }
+            // }
 
-        public Model.Orders AddOrder(Model.Orders orders)
+            public Model.Order AddOrder(Model.Order orders)
         {
             _context.Orders.Add(
-            new Entity.Order
+            new Model.Order
             {
                 OrderId = orders.OrderId,
                 OrderQuantity = orders.OrderQuantity,
                 OrderNumber = orders.OrderNumber,
                 OrderTotal = orders.OrderTotal,
                 OrderLocation = orders.OrderLocation,
-                OrderDate = DateTime.Now
-            }
-        );
+                OrderDate = orders.OrderDate
+            });
             _context.SaveChanges();
             return orders;
         }
 
-        public Model.Orders GetOrders(Model.Orders orders)
+        public Model.Order GetOrders(Model.Order orders)
         {
-            Entity.Order found = _context.Orders.FirstOrDefault(ord => ord.OrderId == orders.OrderId);
+            Model.Order found = _context.Orders.FirstOrDefault(ord => ord.OrderId == orders.OrderId);
             if (found == null) return null;
-            return new Model.Orders(found.OrderId, found.OrderQuantity, found.OrderNumber, found.OrderTotal, found.OrderLocation);
+            return new Model.Order(found.OrderId, found.OrderQuantity, found.OrderNumber, found.OrderTotal, found.OrderLocation, found.OrderDate);
         }
 
-        public void UpdateOrder(Model.Orders order2BeUpdated)
+        public void UpdateOrder(Model.Order order2BeUpdated)
         {
 
-            Entity.Order oldOrder = _context.Orders.Find(order2BeUpdated.OrderId);
+            Model.Order oldOrder = _context.Orders.Find(order2BeUpdated.OrderId);
 
             _context.Entry(oldOrder).CurrentValues.SetValues(order2BeUpdated);
 
 
-            Entity.Order oldOrder1 = _context.Orders.Find(order2BeUpdated.OrderId);
+            Model.Order oldOrder1 = _context.Orders.Find(order2BeUpdated.OrderId);
 
 
             oldOrder1.OrderQuantity = order2BeUpdated.OrderQuantity;
@@ -160,12 +152,12 @@ namespace PPDL
         {
 
 
-            Entity.Inventory oldInventory = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
+            Model.Inventory oldInventory = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
 
             _context.Entry(oldInventory).CurrentValues.SetValues(inventory2BeUpdated);
 
 
-            Entity.Inventory oldInventory1 = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
+            Model.Inventory oldInventory1 = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
 
 
             oldInventory1.InventoryQuantity = inventory2BeUpdated.InventoryQuantity;
@@ -183,11 +175,11 @@ namespace PPDL
 
         public Model.Inventory GetInventory(int prod, int loc)
         {
-            Entity.Inventory found = _context.Inventories.FirstOrDefault(inv => inv.InventoryNumber == prod && inv.InventoryCode == loc);
+            Model.Inventory found = _context.Inventories.FirstOrDefault(inv => inv.InventoryNumber == prod && inv.InventoryCode == loc);
             if (found == null) return null;
             return new Model.Inventory(found.InventoryId, found.InventoryNumber, found.InventoryQuantity, found.InventoryCode);
 
-            //     // _context.ChangeTracker.Clear();
+            //*DO NOT UNCOMMENT!!!*     // _context.ChangeTracker.Clear();
 
         }
 
@@ -195,7 +187,7 @@ namespace PPDL
         {
 
 
-            Entity.Inventory oldInventory = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
+            Model.Inventory oldInventory = _context.Inventories.Find(inventory2BeUpdated.InventoryId);
 
             // Console.WriteLine(oldInventory.ToString());
             // Console.WriteLine(oldInventory.ToString());
@@ -225,11 +217,36 @@ namespace PPDL
 
         public int GetLocation(string location)
         {
-            Entity.Location found = _context.Locations.FirstOrDefault(loc => loc.LocationState == location);
+            Model.Location found = _context.Location.FirstOrDefault(loc => loc.State == location);
             if (found == null)
                 Console.WriteLine("Could not find location!");
             return found.LocationId;
         }
+
+        public Products GetProducts(Products products)
+        {
+            Model.Products found = _context.Products.FirstOrDefault(prod => prod.ProductId == products.ProductId);
+            if (found == null)
+                return null;
+            return new Products(found.ProductId, found.ProductName, found.ProductQuantity, found.ProductPrice);
+        }
+
+        public Model.Products AddProducts(Model.Products products)
+        {
+            _context.Products.Add(
+                new Products
+                {
+                    ProductId = products.ProductId,
+                    ProductName = products.ProductName,
+                    ProductQuantity = products.ProductQuantity,
+                    ProductPrice = products.ProductPrice
+                }
+            );
+            _context.SaveChanges();
+            return products;
+        }
+
+        
 
         // public string GetOrdersL(Model.Orders orders)
         // {
@@ -243,51 +260,28 @@ namespace PPDL
 
         // }
 
+        public Location AddLocation(Location location)
+        {
+                 _context.Location.Add(
+                     new Location
+                     {
+                         LocationId = location.LocationId,
+                         Name = location.Name,
+                         City = location.City,
+                         State = location.State,
+                     }
+                 );
+                 _context.SaveChanges();
+                 return location;
+             }
 
-        // {
-        //     private Entity.PPDBContext _context;
-
-
-        //     public RepoDB(Entity.PPDBContext context)
-        //     {
-        //         _context = context;
-        //     }
-        //     public PPModels.Customers AddCustomer(PPModels.Customers customers)
-        //         {
-        //         //This records a change in the context change tracker that we want to add this particular entity to the 
-        //         // db
-        //                 Entity.Customer tobeAdded = _context.Customers.First(custo => custo.Id == customers.Id);
-        //                 _context.Customers.Add(toBeAdded);
-        //                 _context.SaveChanges();
-        //                 return customers;
-        //                 _context.Customers.Add(
-        //                 new Entity.Customer
-        //                 {
-        //                     CustomerName = customers.Name
-        //                 }
-        //                 );
-        // // //         //This persists the change to the db
-        // // //         // Note: you can create a separate method that persists the changes so that you can execute repo commands in
-        // // //         //the BL and save changes only when all the operations return no exceptions
-        //                 _context.SaveChanges(customers);
-        //                 return customers;
-        //         }
-
-
-
-        // // //     public PPModels.Location AddLocation(Location location)
-        // // //     {
-        // // //         _context.Locations.Add(
-        // // //             new Entity.Location
-        // // //             {
-        // // //                 LocationName = location.Name,
-        // // //                 LocationCity = location.City,
-        // // //                 LocationState = location.State,
-        // // //             }
-        // // //         );
-        // // //         _context.SaveChanges();
-        // // //         return location;
-        // // //     }
+        public Location GetLocation(Location location)
+        {
+            Model.Location found = _context.Location.FirstOrDefault(loc => loc.LocationId == location.LocationId);
+            if (found == null)
+                return null;
+            return new Location(found.Name, found.City, found.State);
+        }
 
         // // //     // public Customers DeleteCustomer(Customers customers)
         // // //     // {

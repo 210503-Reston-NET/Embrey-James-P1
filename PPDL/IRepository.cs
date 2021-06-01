@@ -7,19 +7,23 @@ using System.Linq;
 namespace PPDL
 {
     public interface IRepository
-    {
-        // List<Customer> GetAllCustomers();
-        Customers AddCustomer(Customers customers);
-        Customers GetCustomer(Customers customers);
-        // Products GetProducts(Products products);
-        Orders AddOrder(Orders orders);
-        Orders GetOrders(Orders orders);
+    {  
+        Products GetProducts(Products products);
+        Products AddProducts(Products products);
+        Order AddOrder(Order orders);
+        Order GetOrders(Order orders);
+        List<Products> GetAllProducts();
 
-        void UpdateOrder(Orders order2BeUpdated);
+        void UpdateOrder(Order order2BeUpdated);
 
-        int GetCustomer1(Customers customers);
+        int GetCustomer1(Customer customers);
 
-        bool GetCustomer2(Customers customers);
+        bool GetCustomer2(Customer customers);
+
+        Customer AddCustomer(Customer customers);
+        Customer GetCustomer(Customer customers);
+        List<Customer> GetAllCustomers();
+
 
         // string GetOrdersL(Orders orders);
 
@@ -31,9 +35,13 @@ namespace PPDL
 
         int GetLocation(string location);
 
+        Location AddLocation(Location location);
+
+        Location GetLocation(Location location);
+
         List<Location> GetAllLocations();
 
-        List<Products> GetAllProducts();
+        
 
 
         // int DeleteProduct(Products products);

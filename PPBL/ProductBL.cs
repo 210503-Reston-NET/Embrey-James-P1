@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using PPDL;
 using PPModels;
-/*using Entity = PPDL.Entities;*/
+
 
 namespace PPBL
 {
@@ -16,27 +16,30 @@ namespace PPBL
         }
 
 
-        // public Products AddProduct(Products products)
-        // {
-        //     if(_repo.GetProducts(products)!=null)
-        //     {
-        //         throw new Exception ("Product already exists!");
-        //     }
-        //     return _repo.AddProduct(products);
-        // }
+         public Products AddProducts(Products products)
+         {
+            if(_repo.GetProducts(products)!=null)
+            {
+                throw new Exception("Product already exists!");
+                return new Products();
+
+            }
+            return _repo.AddProducts(products);
+
+         }
 
         public List<Products> GetAllProducts()
         {
             return _repo.GetAllProducts();
         }
 
-        // public Products DeleteProducts (Products products)
-        // {
-        //     if(_repo.DeleteProduct(products))
-        //     {
+        /*public Products DeleteProducts (Products products)
+        {
+            if(_repo.DeleteProduct(products))
+            {
 
-        //     }
-        // }
+            }
+        }*/
 
     }
 }

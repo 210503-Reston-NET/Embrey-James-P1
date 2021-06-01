@@ -9,30 +9,33 @@ using System.Text.RegularExpressions;
 
 namespace PPWebUI.Models
 {
-    public class CustomerVM
+    public class LocationVM
     {
-        public CustomerVM(Customer customer)
+        public LocationVM(Location location)
         {
-            Id = customer.CustomerId;
-            name = customer.Name;
-            locale = customer.Locale;
+            Id = location.LocationId;
+            Name = location.Name;
+            City = location.City;
+            State = location.State;
         }
-        public CustomerVM()
+
+        public LocationVM()
         {
 
         }
 
         public int Id { get; set; }
 
-
         [Required]
         [DisplayName("Name")]
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Required]
+        public string City { get; set; }
 
-        public string locale { get; set; }
-        
+        public string State { get; set; }
+
+        /*public List<Inventory> Inventories { get; set; }*/
     }
 }
