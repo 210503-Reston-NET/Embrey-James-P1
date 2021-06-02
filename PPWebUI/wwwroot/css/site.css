@@ -59,8 +59,11 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    background-image: url('file:///C:\Users\JP\Desktop\Programming\Revature\Embrey-James-P1\Embrey-James-P1\PPWebUI\image\P2.JPG');
+    background-size:cover;
+    background-repeat:no-repeat;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 .footer {
   position: absolute;

@@ -17,14 +17,14 @@ namespace PPBL
 
         /*public Order AddOrder(Order orders)
         {
-            if(_repo.GetOrders(orders)!=null)
+            if (_repo.GetOrders(orders) != null)
             {
-                throw new Exception ("Order already exists!");
+                throw new Exception("Order already exists!");
             }
             return _repo.AddOrder(orders);
-        }*/
+        }
 
-        /*public Order GetOrders(Order orders)
+        public Order GetOrders(Order orders)
         {
             return _repo.GetOrders(orders);
         }
@@ -32,7 +32,7 @@ namespace PPBL
         public void UpdateOrder(Order order2BeUpdated)
         {
             _repo.UpdateOrder(order2BeUpdated);
-        }
         }*/
     }
 }
+

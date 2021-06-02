@@ -33,7 +33,7 @@ namespace PPWebUI.Models
 
         [Required]
         public string City { get; set; }
-
+        [Required]
         public string State { get; set; }
 
         

@@ -13,12 +13,12 @@ namespace PPDL
         /*Products UpdateProduct(Products products);*/
 
 
-        /*Order AddOrder(Order orders);*/
-        /*Order GetOrders(Order orders);*/
+        /*Order AddOrder(Order orders);
+        Order GetOrders(Order orders);*/
         List<Products> GetAllProducts();
 
-        /*void UpdateOrder(Order order2BeUpdated);
-        */
+        /*void UpdateOrder(Order order2BeUpdated);*/
+
 
         int GetCustomer1(Customer customers);
 
@@ -37,7 +37,7 @@ namespace PPDL
 
         /*void DecrementInventory(Inventory inventory);*/
 
-        
+
 
         Location AddLocation(Location location);
 
@@ -46,9 +46,6 @@ namespace PPDL
         int GetLocation(string location);
 
         List<Location> GetAllLocations();
-
-        
-
 
         // int DeleteProduct(Products products);
 

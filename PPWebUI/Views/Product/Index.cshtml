@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Products</h1>
 
 <p>
-    <a asp-action="Create">Purchase</a>
+    <a asp-action="Create">Add Product</a>
 </p>
 <table class="table">
     <thead>
@@ -24,7 +24,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.price)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -44,8 +43,7 @@
             </td>
             <td>
                 @Html.ActionLink("Purchase", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                
+                @Html.ActionLink("Description", "Details", new { /* id=item.PrimaryKey */ })  
             </td>
         </tr>
 }

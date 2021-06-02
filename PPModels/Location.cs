@@ -9,8 +9,9 @@ namespace PPModels
     {
         private Location location;
 
-        public Location(string name, string city, string state)
+        public Location(int locationId, string name, string city, string state)
         {
+            this.LocationId = locationId;
             this.Name = name;
             this.City = city;
             this.State = state;

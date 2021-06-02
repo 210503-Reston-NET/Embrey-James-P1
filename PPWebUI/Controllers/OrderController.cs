@@ -13,10 +13,16 @@ namespace PPWebUI.Controllers
 {
     public class OrderController : Controller
     {
+        private IOrderBL _orderBL;
+
+        public OrderController(IOrderBL oBL)
+        {
+            _orderBL = oBL;
+        }
         // GET: OrderController
         public ActionResult Index()
         {
-            return View();
+            return View(/*_orderBL.GetAllOrders().Select(ord => new ProductVM(ord)).ToList()*/);
         }
 
         // GET: OrderController/Details/5

@@ -19,7 +19,7 @@ namespace PPDL
         {
             return _context.Locations
             .Select(
-                location => new Location(location.Name, location.City, location.State)
+                location => new Location(location.LocationId, location.Name, location.City, location.State)
             ).ToList();
         }
 
@@ -92,23 +92,23 @@ namespace PPDL
 
 
 
-        /*_context.Entry(oldProduct).CurrentValues.SetValues(oldProduct.ParseProduct(product2BUpdated));*/
+        /*_context.Entry(oldProduct).CurrentValues.SetValues(oldProduct.ParseProduct(product2BUpdated));
 
 
-        /*Products oldProducts = _context.Products.Find(product2BUpdated.Products);
-        oldProduct.ProductQuantity = product2BUpdated.ProductQuantity;*/
+        Products oldProducts = _context.Products.Find(product2BUpdated.Products);
+        oldProduct.ProductQuantity = product2BUpdated.ProductQuantity;
 
-        /*_context.SaveChanges();*/
+        _context.SaveChanges();*/
 
         //     //This method clears the change tracker to drop all tracked entities
         //     _context.ChangeTracker.Clear();
         // }
         // }
 
-        /*Order AddOrder(Order orders)
+        Order AddOrder(Order orders)
         {
             _context.Orders.Add(
-            new Model.Order
+            new Order
             {
                 OrderId = orders.OrderId,
                 OrderQuantity = orders.OrderQuantity,
@@ -119,16 +119,16 @@ namespace PPDL
             });
             _context.SaveChanges();
             return orders;
-        }*/
+        }
 
-        /*Order GetOrders(Order orders)
+        Order GetOrders(Order orders)
         {
             Model.Order found = _context.Orders.FirstOrDefault(ord => ord.OrderId == orders.OrderId);
             if (found == null) return null;
-            return new Model.Order(found.OrderId, found.OrderQuantity, found.OrderNumber, found.OrderTotal, found.OrderLocation, found.OrderDate);
-        }*/
+            return new Order(found.OrderId, found.OrderQuantity, found.OrderNumber, found.OrderTotal, found.OrderLocation, found.OrderDate);
+        }
 
-        /*void UpdateOrder(Order order2BeUpdated)
+        void UpdateOrder(Order order2BeUpdated)
         {
 
             Order oldOrder = _context.Orders.Find(order2BeUpdated.OrderId);
@@ -150,7 +150,7 @@ namespace PPDL
 
             // _context.ChangeTracker.Clear();
 
-        }*/
+        }
 
 
 
@@ -286,7 +286,7 @@ namespace PPDL
                 Location found = _context.Locations.FirstOrDefault(loc => loc.LocationId == location.LocationId);
                 if (found == null)
                     return null;
-                return new Location(found.Name, found.City, found.State);
+                return new Location(found.LocationId, found.Name, found.City, found.State);
             }
 
             /*Customer DeleteCustomer(Customer customers)
