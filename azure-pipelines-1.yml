@@ -17,7 +17,7 @@ steps:
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'PPSonarCloud'
-    organization: '210503-Reston-NET'
+    organization: '210503-reston-net'
     scannerMode: 'MSBuild'
     projectKey: 210503-Reston-NET_Embrey-James-P1
 
